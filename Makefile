@@ -1,7 +1,6 @@
 PACKER := $(GOPATH)/bin/gokr-packer
 
 
-
 test: generate
 	go test ./...
 .PHONY: test
@@ -23,5 +22,5 @@ update: generate $(PACKER)
 .PHONY: update
 
 pkg/*:
-	go run $@/*.go | panicparse
+	go run $@/*.go
 .PHONY: pkg/*

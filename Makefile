@@ -1,9 +1,15 @@
 PACKER := $(GOPATH)/bin/gokr-packer
 
+all: build
+.PHONY:all
 
-test: generate
+test:
 	go test ./...
 .PHONY: test
+
+install:
+	go get -t ./...
+.PHONY: install
 
 clean:
 	rm -rf internal/api
@@ -21,6 +27,10 @@ update: generate $(PACKER)
 	gokr-packer -update="yes" -hostname="krazy" ./pkg/*
 .PHONY: update
 
+build: test pkg/*
+.PHONY: build
+
+pkg/*: bin = $(word 2,$(subst /, ,$@))
 pkg/*:
-	go run $@/*.go
+	go build -o ./dist/$(bin) ./$@
 .PHONY: pkg/*

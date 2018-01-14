@@ -1,0 +1,13 @@
+language: go
+go:
+- 1.9
+install:
+- make install
+
+deploy:
+  provider: releases
+  api_key:
+    secure: K7TXTlWb8n4NTHZhCXEBXUyd80SDa0d5dmnPN8Q1TDYIF3EqQLJZsn8vh6h/7R1NLfbYpgpr0NoFuzdVL3N5VuVzfR6TicltpJRfM7ZIqJcFedZFGzh8321ZhLMzN9irIEU12RWPJ0LimDL9Edz6y0JEIRe4Cviiw4cIJjczx293voSCb+GJOcVZWYPnpzdznNRmLHxnaI0y6dh7PicwUW9NKecCOuAFvFpIOZFb3uRJXaZ8g45cqNYxK44xz+JdJ+2PozNepLNOtYlcxffqJ0uzw6NrPTG0oOENPa4kqRrUFIiD8TmDZAqBnwKvlPUsyssKbfIEirj+qNahxjaJvBrGJo2et7IjW0TbUWfilJO09QwPrYqOJdbyMZYNBYg8SyNUGFvq+mLYmQ7unsgRtUVl4/0CFxVM2j9BLYAPPdOr9Lx3jg+CPHzenQtsPqVagcR5Ha391/20EqfqG2qDNz05CU0WlIVTkVL0HBkD6VIEiJrJC9RGC/B6ZL2k/A5dbacQvsNtbvy/d940HnuOVTMC2GAVEh5lsf7MZO4Va/xpYZFK/bDW2vp0ooX6TXJ15xlM5DeUJrLw7P4SDc4MFvpH3lzw4k0W2syJ7swvSCae4l32Yg1l6psNdsxhHbXgrKH4QPqW9g9tzUWKQRpcolzrO38swxAG3x3JXwgAAWE=
+  file: dist/*
+  on:
+    repo: ThatTomPerson/home

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 
 	chattyPb "github.com/ThatTomPerson/home/internal/api/chatty"
@@ -30,13 +31,23 @@ func main() {
 
 func handle(service micro.Service) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+
+		name := r.Form.Get("name")
+		if name == "" {
+			name = "Tom"
+		}
+
 		// create the greeter client using the service name and client
 		chatty := chattyPb.NewChattyClient("chatty", service.Client())
 
 		// request the Hello method on the Chatty handler
 		rsp, err := chatty.Hello(context.TODO(), &chattyPb.HelloRequest{
-			Name: "John",
+			Name: name,
 		})
+
+		log.Printf("Rx: %s\n", rsp.Greeting)
+
 		if err != nil {
 			fmt.Println(err)
 			return
